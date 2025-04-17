@@ -1,0 +1,8 @@
+{
+  "status": "approved",
+  "session_id": "sess_456",
+  "renter": {
+    "id": "r_789",
+    "name": "Jane Doe"
+  }
+}

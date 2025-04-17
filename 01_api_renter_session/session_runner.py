@@ -2,14 +2,16 @@ import os
 import requests
 import json
 from time import sleep
-from dotenv import load_dotenv
+from dotenv import load_dotenv # type: ignore
 
 # Load environment variables
 load_dotenv()
 
-AUTH_URL = "https://mockapi.obligo.io/auth/token"
-SESSION_URL = "https://mockapi.obligo.io/renters/session"
-STATUS_URL_TEMPLATE = "https://mockapi.obligo.io/renters/session/{}"
+MOCK_SERVER = os.getenv("MOCK_SERVER")
+
+AUTH_URL = MOCK_SERVER+"/auth/token"
+SESSION_URL = MOCK_SERVER+"/renters/session"
+STATUS_URL_TEMPLATE = MOCK_SERVER+"/renters/session/{}"
 
 CLIENT_ID = os.getenv("CLIENT_ID")
 CLIENT_SECRET = os.getenv("CLIENT_SECRET")
