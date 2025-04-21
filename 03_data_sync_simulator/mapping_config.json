@@ -1,0 +1,10 @@
+{
+    "renter_id": "tenant_id",
+    "property_id": "unit_id",
+    "email": "email",
+    "amount": "balance",
+    "currency": "USD",
+    "full_name": "full_name",
+    "is_active": "active"
+  }
+  

@@ -2,7 +2,7 @@ import os
 import requests
 import json
 from time import sleep
-from dotenv import load_dotenv # type: ignore
+from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv()

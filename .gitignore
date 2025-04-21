@@ -1,6 +1,47 @@
-# Environment variables
-.env
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.sqlite3
+*.db
 
-# Python virtual environment
+# --- Virtualenv ---
 .venv/
+env/
+venv/
 
+# --- dotenv secrets ---
+.env
+.env.*
+
+# --- Editor / OS files ---
+.DS_Store
+.vscode/
+*.swp
+*.swo
+*.bak
+*.log
+
+# --- Postman exports ---
+*.postman_environment.json
+*.postman_collection.json
+
+# --- Output or cache files ---
+*.log
+*.out
+*.tmp
+*.lock
+*.pid
+*.json
+
+
+# --- Node frontend ---
+node_modules/
+dist/
+build/
+*.map
+
+# --- Misc ---
+.idea/
+coverage/
