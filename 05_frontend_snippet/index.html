@@ -1,0 +1,26 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eligibility Checker Demo</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; background: #f9f9f9; }
+    #checker-container { margin-top: 2rem; padding: 1rem; background: white; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); max-width: 400px; }
+    label, input, button { display: block; width: 100%; margin-bottom: 1rem; }
+    #result { font-weight: bold; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>Demo: Eligibility Checker Snippet</h1>
+  <div id="checker-container">
+    <label for="email">Enter Email:</label>
+    <input type="email" id="eligibility-email" placeholder="user@example.com" />
+    <button id="check-eligibility">Check Eligibility</button>
+    <div id="result"></div>
+  </div>
+
+  <script src="./embed.js"></script>
+</body>
+</html>

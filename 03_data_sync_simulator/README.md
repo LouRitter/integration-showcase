@@ -1,6 +1,6 @@
 # 🔄 Ledger Balance Sync Simulator
 
-This module simulates a real-world data integration scenario where tenant financial data from a Property Management System (PMS) is validated, transformed, and synced to a mock version of Obligo’s API — specifically targeting the `/renter/ledger/update` endpoint.
+This module simulates a real-world data integration scenario where tenant financial data from a Property Management System (PMS) is validated, transformed, and synced to a mock version of a renter API — specifically targeting the `/renter/ledger/update` endpoint.
 
 ---
 
