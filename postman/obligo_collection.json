@@ -1,0 +1,314 @@
+{
+	"info": {
+		"_postman_id": "e592582b-a610-4106-ba4a-76294ab63b5b",
+		"name": "Obligo Integration Flow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2548885"
+	},
+	"item": [
+		{
+			"name": "Authenticate Partner",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"client_secret\": \"{{client_secret}}\"\n}"
+				},
+				"url": {
+					"raw": "/auth/token",
+					"path": [
+						"auth",
+						"token"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Authenticate Partner",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"client_id\": \"test-client-id\",\n  \"client_secret\": \"test-secret\"\n}"
+						},
+						"url": {
+							"raw": "/auth/token",
+							"path": [
+								"auth",
+								"token"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"userSessionToken\": \"test_token\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Start Renter Session",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{userSessionToken}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"renter_id\": \"r_789\",\n  \"property_id\": \"p_456\",\n  \"amount\": 2100,\n  \"currency\": \"USD\"\n}"
+				},
+				"url": {
+					"raw": "/renters/session",
+					"path": [
+						"renters",
+						"session"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Start Renter Session",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{userSessionToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"renter_id\": \"r_789\",\n  \"property_id\": \"p_456\",\n  \"amount\": 2100,\n  \"currency\": \"USD\"\n}"
+						},
+						"url": {
+							"raw": "/renters/session",
+							"path": [
+								"renters",
+								"session"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n  \"session_id\": \"sess_456\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Session Status",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{userSessionToken}}"
+					}
+				],
+				"url": {
+					"raw": "/renters/session/{{session_id}}",
+					"path": [
+						"renters",
+						"session",
+						"{{session_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Session Status",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{userSessionToken}}"
+							}
+						],
+						"url": {
+							"raw": "/renters/session/sess_456",
+							"path": [
+								"renters",
+								"session",
+								"sess_456"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n  \"status\": \"approved\",\r\n  \"session_id\": \"sess_456\",\r\n  \"renter\": {\r\n    \"id\": \"r_789\",\r\n    \"name\": \"Jane Doe\"\r\n  }\r\n}\r\n"
+				}
+			]
+		},
+		{
+			"name": "Webhook Receiver (Test)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"event\": \"renter_session.approved\",\n  \"session_id\": \"abc123\",\n  \"renter\": {\n    \"id\": \"r_789\",\n    \"name\": \"Jane Doe\",\n    \"email\": \"jane@example.com\"\n  },\n  \"approved_at\": \"2025-04-16T15:23:00Z\"\n}"
+				},
+				"url": {
+					"raw": "https://yourdomain.com/webhook/obligo",
+					"protocol": "https",
+					"host": [
+						"yourdomain",
+						"com"
+					],
+					"path": [
+						"webhook",
+						"obligo"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Webhook Receiver (Test)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"event\": \"renter_session.approved\",\n  \"session_id\": \"abc123\",\n  \"renter\": {\n    \"id\": \"r_789\",\n    \"name\": \"Jane Doe\",\n    \"email\": \"jane@example.com\"\n  },\n  \"approved_at\": \"2025-04-16T15:23:00Z\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/webhook",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"webhook"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/3.1.3 Python/3.12.3"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 21 Apr 2025 21:03:25 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "50"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Webhook received\",\n    \"status\": \"success\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Ledger Update",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"renter_id\": \"12345\",\r\n  \"property_id\": \"U101\",\r\n  \"balance_due\": 1200.50,\r\n  \"last_payment_date\": \"2025-04-01\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "/renter/ledger/update",
+					"path": [
+						"renter",
+						"ledger",
+						"update"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Ledger Update (success)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"renter_id\": \"12345\",\r\n  \"property_id\": \"U101\",\r\n  \"balance_due\": 1200.50,\r\n  \"last_payment_date\": \"2025-04-01\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/renter/ledger/update",
+							"path": [
+								"renter",
+								"ledger",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n  \"message\": \"Ledger updated successfully\"\r\n}\r\n"
+				}
+			]
+		}
+	]
+}
