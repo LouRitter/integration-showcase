@@ -1,10 +1,10 @@
 # Integration Showcase
 
-This repository demonstrates technical skills relevant to the Partnership Implementation Engineer role at Obligo. Each folder contains a mini-project simulating key integration tasks using mocked APIs, fake data, and documented flows.
+This repository demonstrates technical skills relevant to an integation or implementation solutions role. Each folder contains a mini-project simulating key integration tasks using mocked APIs, fake data, and documented flows.
 
 ## Projects Overview
 
-1. **API Renter Session** — Simulates a renter session flow using mock REST endpoints.
+1. **API Renter Session** — Simulates a session flow using mock REST endpoints.
 2. **Webhook Receiver** — Webhook listener with retry simulation and payload logging.
 3. **Data Sync Simulator** — Mimics syncing data between two services (ETL).
 4. **Implementation Playbook** — Markdown guide for integrations learning.
